@@ -10,13 +10,16 @@ fun main()
     var numberOfNotifications = morningNotifications
     for (x in 1..2)
     {
-
         numberOfNotifications = eveningNotifications
     }
-
+/*
     println("The movie ticket price for a person aged $child is \$${ticketPrice(child, isMonday)}.")
     println("The movie ticket price for a person aged $adult is \$${ticketPrice(adult, isMonday)}.")
     println("The movie ticket price for a person aged $senior is \$${ticketPrice(senior, isMonday)}.")
+*/
+    printFinalTemperature(initialMeasurement = 27.0, initialUnit = "Celsius", finalUnit = "Fahrenheit"){ 9.0/5.0 * it + 32.0}
+    printFinalTemperature(initialMeasurement = 350.0, initialUnit = "Kelvin", finalUnit = "Celsius"){it - 273.15}
+    printFinalTemperature(initialMeasurement = 10.0, initialUnit = "Fahrenheit", finalUnit = "Kelvin"){ 5.0/9.0 *(it - 32.0) + 273.15}
 
 }
 
@@ -27,12 +30,22 @@ fun printNotificationSummary(numberOfNotifications: Int)
 }
 fun ticketPrice(age: Int, isMonday: Boolean): Int {
 
-   return when(age)
-   {
+   return when(age) {
        in 0..12 -> 15
        in 13..60 -> if (isMonday) 25 else 30
        in 61..100 -> 20
        else -> -1
    }
+}
 
+fun printFinalTemperature(
+    initialMeasurement: Double,
+    initialUnit: String,
+    finalUnit: String,
+    conversionFormula: (Double) -> (Double)
+)
+
+{
+    val finalMeasurement = String.format("%.2f", conversionFormula(initialMeasurement))
+    println("$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit.")
 }
