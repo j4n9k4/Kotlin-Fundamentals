@@ -1,3 +1,4 @@
+/*
 class Song(title: String, artist: String, publishedYear: String, playCount: Int)
 {
     val title: String = title
@@ -13,13 +14,40 @@ class Song(title: String, artist: String, publishedYear: String, playCount: Int)
     }
 
 }
+*/
+
+class Person(val name: String, val age: Int, val hobby: String?, val referrer: Person?)
+{
+    fun showProfile()
+    {
+        println("Name: $name")
+        println("Age: $age")
+        if (hobby != null) print("Likes to $hobby. ") else print("Don't have a hobby. ")
+        if (referrer != null)
+        {
+            print("Has a referrer named ${referrer.name}, who likes to ${referrer.hobby}.")
+        }
+        else
+        {
+            println("Doesn't have a referrer.")
+        }
+    }
+}
 fun main()
 {
+
+    val amanda = Person("Amanda", 33, "play tennis", null)
+    val alex = Person("Alex", 28, "climb", amanda)
+
+    amanda.showProfile()
+    alex.showProfile()
+
+    /*
     val newSong = Song(title = "Song", artist = "Song Writer", publishedYear = "2000", playCount = 2000)
 
     newSong.printDescription()
     println(newSong.isPopular)
-    /*
+
     val child = 5
     val adult = 28
     val senior = 87
@@ -35,15 +63,16 @@ fun main()
 
     }
 
-    */
-/*
+
+
     println("The movie ticket price for a person aged $child is \$${ticketPrice(child, isMonday)}.")
     println("The movie ticket price for a person aged $adult is \$${ticketPrice(adult, isMonday)}.")
     println("The movie ticket price for a person aged $senior is \$${ticketPrice(senior, isMonday)}.")
-*/
+
     printFinalTemperature(initialMeasurement = 27.0, initialUnit = "Celsius", finalUnit = "Fahrenheit"){ 9.0/5.0 * it + 32.0}
     printFinalTemperature(initialMeasurement = 350.0, initialUnit = "Kelvin", finalUnit = "Celsius"){it - 273.15}
     printFinalTemperature(initialMeasurement = 10.0, initialUnit = "Fahrenheit", finalUnit = "Kelvin"){ 5.0/9.0 *(it - 32.0) + 273.15}
+*/
 
 }
 
