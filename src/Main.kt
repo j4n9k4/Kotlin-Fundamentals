@@ -1,5 +1,25 @@
+class Song(title: String, artist: String, publishedYear: String, playCount: Int)
+{
+    val title: String = title
+    val artist: String = artist
+    val publishedYear: String = publishedYear
+    val playCount: Int = playCount
+
+    val isPopular = if(playCount > 1000) "Popular" else "Unpopular"
+
+    fun printDescription()
+    {
+        println("$title, performed by $artist, was released in $publishedYear.")
+    }
+
+}
 fun main()
 {
+    val newSong = Song(title = "Song", artist = "Song Writer", publishedYear = "2000", playCount = 2000)
+
+    newSong.printDescription()
+    println(newSong.isPopular)
+    /*
     val child = 5
     val adult = 28
     val senior = 87
@@ -11,7 +31,11 @@ fun main()
     for (x in 1..2)
     {
         numberOfNotifications = eveningNotifications
+
+
     }
+
+    */
 /*
     println("The movie ticket price for a person aged $child is \$${ticketPrice(child, isMonday)}.")
     println("The movie ticket price for a person aged $adult is \$${ticketPrice(adult, isMonday)}.")
