@@ -1,4 +1,4 @@
-/*
+
 class Song(title: String, artist: String, publishedYear: String, playCount: Int)
 {
     val title: String = title
@@ -14,9 +14,36 @@ class Song(title: String, artist: String, publishedYear: String, playCount: Int)
     }
 
 }
-*/
 
-class Person(val name: String, val age: Int, val hobby: String?, val referrer: Person?)
+
+open class Phone(var isScreenLightOn: Boolean = false){
+    open fun switchOn() {
+        isScreenLightOn = true
+    }
+
+    fun switchOff() {
+        isScreenLightOn = false
+    }
+
+    fun checkPhoneScreenLight() {
+        val phoneScreenLight = if (isScreenLightOn) "on" else "off"
+        println("The phone screen's light is $phoneScreenLight.")
+    }
+}
+class FoldablePhone(var isFolded: Boolean = false):Phone()
+
+{
+    override fun switchOn()
+    {
+        if (isFolded) super.switchOn() else println("Can't turn on the screen in the folded state ")
+    }
+    fun fold()
+    {
+        isFolded = !isFolded
+    }
+}
+
+class Person(private val name: String, private val age: Int, private val hobby: String?, private val referrer: Person?)
 {
     fun showProfile()
     {
@@ -33,16 +60,29 @@ class Person(val name: String, val age: Int, val hobby: String?, val referrer: P
         }
     }
 }
+class Bid(val amount: Int, val bidder: String)
+
+fun auctionPrice(bid: Bid?, minimumPrince: Int): Int
+{
+    return bid?.amount ?: minimumPrince
+}
 fun main()
 {
+    val winningBid = Bid(5000, "Private Collector")
+
+    println("Item A is sold at ${auctionPrice(winningBid, 2000)}.")
+    println("Item B is sold at ${auctionPrice(null, 3000)}.")
+
 
     val amanda = Person("Amanda", 33, "play tennis", null)
     val alex = Person("Alex", 28, "climb", amanda)
+    val phone = FoldablePhone()
+    phone.switchOn()
 
     amanda.showProfile()
     alex.showProfile()
 
-    /*
+
     val newSong = Song(title = "Song", artist = "Song Writer", publishedYear = "2000", playCount = 2000)
 
     newSong.printDescription()
@@ -72,7 +112,7 @@ fun main()
     printFinalTemperature(initialMeasurement = 27.0, initialUnit = "Celsius", finalUnit = "Fahrenheit"){ 9.0/5.0 * it + 32.0}
     printFinalTemperature(initialMeasurement = 350.0, initialUnit = "Kelvin", finalUnit = "Celsius"){it - 273.15}
     printFinalTemperature(initialMeasurement = 10.0, initialUnit = "Fahrenheit", finalUnit = "Kelvin"){ 5.0/9.0 *(it - 32.0) + 273.15}
-*/
+
 
 }
 
